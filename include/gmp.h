@@ -41,7 +41,7 @@ see https://www.gnu.org/licenses/.  */
 #if ! defined (__GMP_WITHIN_CONFIGURE)
 #define __GMP_HAVE_HOST_CPU_FAMILY_power   0
 #define __GMP_HAVE_HOST_CPU_FAMILY_powerpc 0
-#define GMP_LIMB_BITS                      64
+#define GMP_LIMB_BITS                      32
 #define GMP_NAIL_BITS                      0
 #endif
 #define GMP_NUMB_BITS     (GMP_LIMB_BITS - GMP_NAIL_BITS)
@@ -2331,8 +2331,8 @@ enum
 };
 
 /* Define CC and CFLAGS which were used to build this version of GMP */
-#define __GMP_CC "aarch64-linux-musl-gcc"
-#define __GMP_CFLAGS "-static -fPIC -I/opt/toolchains/aarch64-linux-musl-cross/include -L/opt/toolchains/aarch64-linux-musl-cross/lib"
+#define __GMP_CC "mipsel-linux-muslsf-gcc"
+#define __GMP_CFLAGS "-static -fPIC -I/opt/toolchains/mipsel-linux-muslsf-cross/include -L/opt/toolchains/mipsel-linux-muslsf-cross/lib"
 
 /* Major version number is the value of __GNU_MP__ too, above. */
 #define __GNU_MP_VERSION            6
