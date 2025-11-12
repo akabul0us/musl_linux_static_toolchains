@@ -5,7 +5,7 @@
 # SPDX-License-Identifier: BSD-3-Clause
 ###########################################################################
 
-prefix=/opt/toolchains/aarch64-linux-musl-cross
+prefix=/opt/toolchains/mips-linux-muslsf-cross
 exec_prefix=${prefix}
 libdir=${exec_prefix}/lib
 includedir=${prefix}/include
@@ -16,6 +16,6 @@ Description: Library for SSH-based communication
 Version: 1.11.1
 Requires: libcrypto,zlib
 Requires.private: libcrypto,zlib
-Libs: -L${libdir} -lssh2  -L/opt/toolchains/aarch64-linux-musl-cross/lib -lssl -L/opt/toolchains/aarch64-linux-musl-cross/lib -lcrypto -L/opt/toolchains/aarch64-linux-musl-cross/lib -lz
-Libs.private:  -L/opt/toolchains/aarch64-linux-musl-cross/lib -lssl -L/opt/toolchains/aarch64-linux-musl-cross/lib -lcrypto -L/opt/toolchains/aarch64-linux-musl-cross/lib -lz
+Libs: -L${libdir} -lssh2  -L/opt/toolchains/mips-linux-muslsf-cross/lib -lssl -L/opt/toolchains/mips-linux-muslsf-cross/lib -lcrypto -L/opt/toolchains/mips-linux-muslsf-cross/lib -lz
+Libs.private:  -L/opt/toolchains/mips-linux-muslsf-cross/lib -lssl -L/opt/toolchains/mips-linux-muslsf-cross/lib -lcrypto -L/opt/toolchains/mips-linux-muslsf-cross/lib -lz
 Cflags: -I${includedir}

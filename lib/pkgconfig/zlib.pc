@@ -1,8 +1,8 @@
-prefix=/opt/toolchains/aarch64-linux-musl-cross
+prefix=/opt/zlib-mips
 exec_prefix=${prefix}
-libdir=/opt/toolchains/aarch64-linux-musl-cross/lib
+libdir=/opt/toolchains/mips-linux-muslsf-cross/lib
 sharedlibdir=${libdir}
-includedir=/opt/toolchains/aarch64-linux-musl-cross/include
+includedir=${prefix}/include
 
 Name: zlib
 Description: zlib compression library

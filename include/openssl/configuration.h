@@ -103,6 +103,9 @@ extern "C" {
 # ifndef OPENSSL_NO_MSAN
 #  define OPENSSL_NO_MSAN
 # endif
+# ifndef OPENSSL_NO_PIE
+#  define OPENSSL_NO_PIE
+# endif
 # ifndef OPENSSL_NO_RC5
 #  define OPENSSL_NO_RC5
 # endif
@@ -166,11 +169,11 @@ extern "C" {
  * The following are cipher-specific, but are part of the public API.
  */
 # if !defined(OPENSSL_SYS_UEFI)
-#  undef BN_LLONG
+#  define BN_LLONG
 /* Only one for the following should be defined */
-#  define SIXTY_FOUR_BIT_LONG
+#  undef SIXTY_FOUR_BIT_LONG
 #  undef SIXTY_FOUR_BIT
-#  undef THIRTY_TWO_BIT
+#  define THIRTY_TWO_BIT
 # endif
 
 # define RC4_INT unsigned char
