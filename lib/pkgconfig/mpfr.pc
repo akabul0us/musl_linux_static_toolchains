@@ -1,4 +1,4 @@
-prefix=/opt/toolchains/aarch64-linux-musl-cross
+prefix=/opt/toolchains/arm-linux-musleabi-cross
 exec_prefix=${prefix}
 libdir=${exec_prefix}/lib
 includedir=${prefix}/include

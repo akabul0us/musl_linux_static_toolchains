@@ -1,0 +1,13 @@
+prefix=/opt/zlib-armel
+exec_prefix=${prefix}
+libdir=/opt/toolchains/arm-linux-musleabi-cross/arm-linux-musleabi/lib
+sharedlibdir=${libdir}
+includedir=/opt/toolchains/arm-linux-musleabi-cross/arm-linux-musleabi/include
+
+Name: zlib
+Description: zlib compression library
+Version: 1.3.1
+
+Requires:
+Libs: -L${libdir} -L${sharedlibdir} -lz
+Cflags: -I${includedir}
