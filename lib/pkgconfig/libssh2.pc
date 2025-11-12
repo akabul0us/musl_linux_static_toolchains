@@ -1,0 +1,21 @@
+###########################################################################
+# libssh2 installation details
+#
+# Copyright (C) The libssh2 project and its contributors.
+# SPDX-License-Identifier: BSD-3-Clause
+###########################################################################
+
+prefix=/opt/toolchains/aarch64-linux-musl-cross
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: libssh2
+URL: https://libssh2.org/
+Description: Library for SSH-based communication
+Version: 1.11.1
+Requires: libcrypto,zlib
+Requires.private: libcrypto,zlib
+Libs: -L${libdir} -lssh2  -L/opt/toolchains/aarch64-linux-musl-cross/lib -lssl -L/opt/toolchains/aarch64-linux-musl-cross/lib -lcrypto -L/opt/toolchains/aarch64-linux-musl-cross/lib -lz
+Libs.private:  -L/opt/toolchains/aarch64-linux-musl-cross/lib -lssl -L/opt/toolchains/aarch64-linux-musl-cross/lib -lcrypto -L/opt/toolchains/aarch64-linux-musl-cross/lib -lz
+Cflags: -I${includedir}
