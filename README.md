@@ -1,5 +1,6 @@
 ### Pre-built GCC toolchains from [musl.cc](https://musl.cc/), with the following libraries prebuilt as static libraries:
 
+- [libpcap](https://www.tcpdump.org/index.html#latest-releases)
 - [hwloc](https://github.com/open-mpi/hwloc)
 - [OpenSSL](https://github.com/openssl/openssl)
 - [libssh2](https://libssh2.org/)
@@ -9,6 +10,9 @@
 - [libmpfr](https://www.mpfr.org/)
 - [libxxhash](https://github.com/Cyan4973/xxHash)
 - [libgmp](https://gmplib.org/)
+- [libpkgconf](https://github.com/pkgconf/pkgconf)
+- [libxml2](https://gitlab.gnome.org/GNOME/libxml2)
+- [c-ares](https://c-ares.org/)
 - [libncurses](https://invisible-island.net/ncurses) - _both libncurses and libncursesw (for wide characters) build from the same source, both have been included_
 
 ### How To Use
