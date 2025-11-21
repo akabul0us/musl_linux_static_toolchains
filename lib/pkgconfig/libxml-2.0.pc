@@ -1,0 +1,12 @@
+prefix=/opt/toolchains/mipsel-linux-muslsf-cross
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+modules=1
+
+Name: libXML
+Version: 2.15.1
+Description: libXML library version2.
+Requires: 
+Libs: -L${libdir} -lxml2      -lm 
+Cflags: -I${includedir}/libxml2  
