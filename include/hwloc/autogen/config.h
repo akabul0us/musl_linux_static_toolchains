@@ -25,7 +25,7 @@
 /* #undef HWLOC_RSMI_COMPONENT_BUILTIN */
 /* #undef HWLOC_LEVELZERO_COMPONENT_BUILTIN */
 /* #undef HWLOC_GL_COMPONENT_BUILTIN */
-/* #undef HWLOC_XML_LIBXML_COMPONENT_BUILTIN */
+#define HWLOC_XML_LIBXML_COMPONENT_BUILTIN 1
 
 #if (__GNUC__ > 2 || (__GNUC__ == 2 && __GNUC_MINOR__ >= 95))
 # define __hwloc_restrict __restrict

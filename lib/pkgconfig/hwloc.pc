@@ -1,4 +1,4 @@
-prefix=/opt/toolchains/arm-linux-musleabi-cross
+prefix=/opt/toolchains/arm-linux-musleabihf-cross
 exec_prefix=${prefix}
 libdir=${exec_prefix}/lib
 includedir=${prefix}/include
@@ -6,7 +6,7 @@ includedir=${prefix}/include
 Name: hwloc
 Description: Hardware locality detection and management library
 Version: 3.0.0a1-git
-Requires.private: 
+Requires.private: libxml-2.0 
 Cflags: -I${includedir}
 Libs: -L${libdir} -lhwloc
-Libs.private: -lm     -lpthread
+Libs.private: -lm  -lxml2    -lpthread

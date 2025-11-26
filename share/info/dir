@@ -14,6 +14,9 @@ File: dir,	Node: Top	This is the top of the INFO tree
 
 * Menu:
 
+Encryption
+* Nettle: (nettle).             A low-level cryptographic library.
+
 GNU libraries
 * gmp: (gmp).                   GNU Multiple Precision Arithmetic Library.
 

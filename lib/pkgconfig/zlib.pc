@@ -1,8 +1,8 @@
-prefix=/opt/toolchains/arm-linux-musleabi-cross
+prefix=/opt/toolchains/arm-linux-musleabihf-cross
 exec_prefix=${prefix}
-libdir=/opt/toolchains/arm-linux-musleabi-cross/lib
+libdir=/opt/toolchains/arm-linux-musleabihf-cross/lib
 sharedlibdir=${libdir}
-includedir=/opt/toolchains/arm-linux-musleabi-cross/include
+includedir=/opt/toolchains/arm-linux-musleabihf-cross/include
 
 Name: zlib
 Description: zlib compression library

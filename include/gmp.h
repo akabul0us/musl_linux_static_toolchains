@@ -2331,8 +2331,8 @@ enum
 };
 
 /* Define CC and CFLAGS which were used to build this version of GMP */
-#define __GMP_CC "arm-linux-musleabi-gcc"
-#define __GMP_CFLAGS "-static -fPIC -I/opt/toolchains/arm-linux-musleabi-cross/include -L/opt/toolchains/arm-linux-musleabi-cross/lib"
+#define __GMP_CC "arm-linux-musleabihf-gcc"
+#define __GMP_CFLAGS "-static -fPIC -I/opt/toolchains/arm-linux-musleabihf-cross/include -L/opt/toolchains/arm-linux-musleabihf-cross/lib"
 
 /* Major version number is the value of __GNU_MP__ too, above. */
 #define __GNU_MP_VERSION            6

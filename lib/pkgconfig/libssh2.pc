@@ -5,7 +5,7 @@
 # SPDX-License-Identifier: BSD-3-Clause
 ###########################################################################
 
-prefix=/opt/toolchains/arm-linux-musleabi-cross
+prefix=/opt/toolchains/arm-linux-musleabihf-cross
 exec_prefix=${prefix}
 libdir=${exec_prefix}/lib
 includedir=${prefix}/include
@@ -16,6 +16,6 @@ Description: Library for SSH-based communication
 Version: 1.11.1
 Requires: libcrypto,zlib
 Requires.private: libcrypto,zlib
-Libs: -L${libdir} -lssh2  -L/opt/toolchains/arm-linux-musleabi-cross/lib -lssl -L/opt/toolchains/arm-linux-musleabi-cross/lib -lcrypto -L/opt/toolchains/arm-linux-musleabi-cross/lib -lz
-Libs.private:  -L/opt/toolchains/arm-linux-musleabi-cross/lib -lssl -L/opt/toolchains/arm-linux-musleabi-cross/lib -lcrypto -L/opt/toolchains/arm-linux-musleabi-cross/lib -lz
+Libs: -L${libdir} -lssh2  -L/opt/toolchains/arm-linux-musleabihf-cross/lib -lssl -L/opt/toolchains/arm-linux-musleabihf-cross/lib -lcrypto -L/opt/toolchains/arm-linux-musleabihf-cross/lib -lz
+Libs.private:  -L/opt/toolchains/arm-linux-musleabihf-cross/lib -lssl -L/opt/toolchains/arm-linux-musleabihf-cross/lib -lcrypto -L/opt/toolchains/arm-linux-musleabihf-cross/lib -lz
 Cflags: -I${includedir}

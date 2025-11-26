@@ -1,6 +1,6 @@
 # Package Information for pkg-config
 
-prefix=/opt/toolchains/arm-linux-musleabi-cross
+prefix=/opt/toolchains/arm-linux-musleabihf-cross
 exec_prefix=${prefix}
 libdir=${exec_prefix}/lib
 includedir=${prefix}/include
