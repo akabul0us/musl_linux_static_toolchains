@@ -1,0 +1,15 @@
+prefix=/opt/toolchains/aarch64-linux-musl-cross
+exec_prefix=${prefix}
+includedir=${prefix}/include
+libdir=${exec_prefix}/lib
+host=aarch64-unknown-linux-musl
+mtcflags=
+mtlibs=-lpthread
+
+Name: gpg-error
+Description: GPG Runtime
+Version: 1.56
+Cflags: -I${includedir}
+Libs: -L${libdir} -lgpg-error
+Libs.private: 
+URL: https://www.gnupg.org/software/libgpg-error/index.html

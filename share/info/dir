@@ -17,6 +17,16 @@ File: dir,	Node: Top	This is the top of the INFO tree
 GNU libraries
 * gmp: (gmp).                   GNU Multiple Precision Arithmetic Library.
 
+GNU Libraries
+* libgcrypt: (gcrypt).          Cryptographic function library.
+
+Libraries
+* libgpg-error: (gpgrt).        Error codes and common code for GnuPG.
+
+Software development
+* GNU libtextstyle: (libtextstyle).
+                                Output of styled text.
+
 Software libraries
 * mpfr: (mpfr).                 Multiple Precision Floating-Point Reliable 
                                   Library.

@@ -1,0 +1,162 @@
+.TH "batch" 3 "Version 1.0.5" "libmnl" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+batch \- Netlink message batch helpers
+.SH SYNOPSIS
+.br
+.PP
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "struct mnl_nlmsg_batch * \fBmnl_nlmsg_batch_start\fP (void *buf, size_t limit)"
+.br
+.ti -1c
+.RI "void \fBmnl_nlmsg_batch_stop\fP (struct mnl_nlmsg_batch *b)"
+.br
+.ti -1c
+.RI "bool \fBmnl_nlmsg_batch_next\fP (struct mnl_nlmsg_batch *b)"
+.br
+.ti -1c
+.RI "void \fBmnl_nlmsg_batch_reset\fP (struct mnl_nlmsg_batch *b)"
+.br
+.ti -1c
+.RI "size_t \fBmnl_nlmsg_batch_size\fP (struct mnl_nlmsg_batch *b)"
+.br
+.ti -1c
+.RI "void * \fBmnl_nlmsg_batch_head\fP (struct mnl_nlmsg_batch *b)"
+.br
+.ti -1c
+.RI "void * \fBmnl_nlmsg_batch_current\fP (struct mnl_nlmsg_batch *b)"
+.br
+.ti -1c
+.RI "bool \fBmnl_nlmsg_batch_is_empty\fP (struct mnl_nlmsg_batch *b)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+This library provides helpers to batch several messages into one single datagram\&. These helpers do not perform strict memory boundary checkings\&.
+
+.PP
+The following figure represents a Netlink message batch: 
+.PP
+.nf
+   |<-------------- MNL_SOCKET_BUFFER_SIZE ------------->|
+   |<-------------------- batch ------------------>|     |
+   |-----------|-----------|-----------|-----------|-----------|
+   |<- nlmsg ->|<- nlmsg ->|<- nlmsg ->|<- nlmsg ->|<- nlmsg ->|
+   |-----------|-----------|-----------|-----------|-----------|
+                                             ^           ^
+                                             |           |
+                                        message N   message N+1
+
+.fi
+.PP
+
+.PP
+To start the batch, you have to call \fBmnl_nlmsg_batch_start()\fP and you can use \fBmnl_nlmsg_batch_stop()\fP to release it\&.
+
+.PP
+You have to invoke \fBmnl_nlmsg_batch_next()\fP to get room for a new message in the batch\&. If this function returns NULL, it means that the last message that was added (message N+1 in the figure above) does not fit the batch\&. Thus, you have to send the batch (which includes until message N) and, then, you have to call \fBmnl_nlmsg_batch_reset()\fP to re-initialize the batch (this moves message N+1 to the head of the buffer)\&. For that reason, the buffer that you have to use to store the batch must be double of MNL_SOCKET_BUFFER_SIZE to ensure that the last message (message N+1) that did not fit into the batch is written inside valid memory boundaries\&. 
+.SH "Function Documentation"
+.PP 
+.SS "void * mnl_nlmsg_batch_current (struct mnl_nlmsg_batch * b)"
+mnl_nlmsg_batch_current - returns current position in the batch 
+.PP
+\fBParameters\fP
+.RS 4
+\fIb\fP pointer to batch
+.RE
+.PP
+This function returns a pointer to the current position in the buffer that is used to store the batch\&. 
+.PP
+Definition at line \fB539\fP of file \fBnlmsg\&.c\fP\&.
+.SS "void * mnl_nlmsg_batch_head (struct mnl_nlmsg_batch * b)"
+mnl_nlmsg_batch_head - get head of this batch 
+.PP
+\fBParameters\fP
+.RS 4
+\fIb\fP pointer to batch
+.RE
+.PP
+This function returns a pointer to the head of the batch, which is the beginning of the buffer that is used\&. 
+.PP
+Definition at line \fB527\fP of file \fBnlmsg\&.c\fP\&.
+.SS "bool mnl_nlmsg_batch_is_empty (struct mnl_nlmsg_batch * b)"
+mnl_nlmsg_batch_is_empty - check if there is any message in the batch 
+.PP
+\fBParameters\fP
+.RS 4
+\fIb\fP pointer to batch
+.RE
+.PP
+This function returns true if the batch is empty\&. 
+.PP
+Definition at line \fB550\fP of file \fBnlmsg\&.c\fP\&.
+.SS "bool mnl_nlmsg_batch_next (struct mnl_nlmsg_batch * b)"
+mnl_nlmsg_batch_next - get room for the next message in the batch 
+.PP
+\fBParameters\fP
+.RS 4
+\fIb\fP pointer to batch
+.RE
+.PP
+This function returns false if the last message did not fit into the batch\&. Otherwise, it prepares the batch to provide room for the new Netlink message in the batch and returns true\&.
+
+.PP
+You have to put at least one message in the batch before calling this function, otherwise your application is likely to crash\&. 
+.PP
+Definition at line \fB474\fP of file \fBnlmsg\&.c\fP\&.
+.SS "void mnl_nlmsg_batch_reset (struct mnl_nlmsg_batch * b)"
+mnl_nlmsg_batch_reset - reset the batch 
+.PP
+\fBParameters\fP
+.RS 4
+\fIb\fP pointer to batch
+.RE
+.PP
+This function allows to reset a batch, so you can reuse it to create a new one\&. This function moves the last message which does not fit the batch to the head of the buffer, if any\&. 
+.PP
+Definition at line \fB495\fP of file \fBnlmsg\&.c\fP\&.
+.SS "size_t mnl_nlmsg_batch_size (struct mnl_nlmsg_batch * b)"
+mnl_nlmsg_batch_size - get current size of the batch 
+.PP
+\fBParameters\fP
+.RS 4
+\fIb\fP pointer to batch
+.RE
+.PP
+This function returns the current size of the batch\&. 
+.PP
+Definition at line \fB515\fP of file \fBnlmsg\&.c\fP\&.
+.SS "struct mnl_nlmsg_batch * mnl_nlmsg_batch_start (void * buf, size_t limit)"
+mnl_nlmsg_batch_start - initialize a batch 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbuf\fP pointer to the buffer that will store this batch 
+.br
+\fIlimit\fP maximum size of the batch (should be MNL_SOCKET_BUFFER_SIZE)\&.
+.RE
+.PP
+The buffer that you pass must be double of MNL_SOCKET_BUFFER_SIZE\&. The limit must be half of the buffer size, otherwise expect funny memory corruptions 8-)\&.
+
+.PP
+You can allocate the buffer that you use to store the batch in the stack or the heap, no restrictions in this regard\&. This function returns NULL on error\&. 
+.PP
+Definition at line \fB434\fP of file \fBnlmsg\&.c\fP\&.
+.SS "void mnl_nlmsg_batch_stop (struct mnl_nlmsg_batch * b)"
+mnl_nlmsg_batch_stop - release a batch 
+.PP
+\fBParameters\fP
+.RS 4
+\fIb\fP pointer to batch
+.RE
+.PP
+This function releases the batch allocated by \fBmnl_nlmsg_batch_start()\fP\&. 
+.PP
+Definition at line \fB458\fP of file \fBnlmsg\&.c\fP\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for libmnl from the source code\&.
