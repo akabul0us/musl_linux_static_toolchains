@@ -1,0 +1,98 @@
+.TH "callback" 3 "Version 1.0.5" "libmnl" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+callback \- Callback helpers
+.SH SYNOPSIS
+.br
+.PP
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBmnl_cb_run2\fP (const void *buf, size_t numbytes, unsigned int seq, unsigned int portid, mnl_cb_t cb_data, void *data, const mnl_cb_t *cb_ctl_array, unsigned int cb_ctl_array_len)"
+.br
+.ti -1c
+.RI "int \fBmnl_cb_run\fP (const void *buf, size_t numbytes, unsigned int seq, unsigned int portid, mnl_cb_t cb_data, void *data)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SH "Function Documentation"
+.PP 
+.SS "int mnl_cb_run (const void * buf, size_t numbytes, unsigned int seq, unsigned int portid, mnl_cb_t cb_data, void * data)"
+mnl_cb_run - callback runqueue for netlink messages (simplified version) 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbuf\fP buffer that contains the netlink messages 
+.br
+\fInumbytes\fP number of bytes stored in the buffer 
+.br
+\fIseq\fP sequence number that we expect to receive 
+.br
+\fIportid\fP Netlink PortID that we expect to receive 
+.br
+\fIcb_data\fP callback handler for data messages 
+.br
+\fIdata\fP pointer to data that will be passed to the data callback handler
+.RE
+.PP
+This function is like \fBmnl_cb_run2()\fP but it does not allow you to set the control callback handlers\&.
+
+.PP
+Your callback may return three possible values:
+.IP "\(bu" 2
+MNL_CB_ERROR (<=-1): an error has occurred\&. Stop callback runqueue\&.
+.IP "\(bu" 2
+MNL_CB_STOP (=0): stop callback runqueue\&.
+.IP "\(bu" 2
+MNL_CB_OK (>=1): no problems has occurred\&.
+.PP
+
+.PP
+This function propagates the callback return value\&. 
+.PP
+Definition at line \fB159\fP of file \fBcallback\&.c\fP\&.
+.SS "int mnl_cb_run2 (const void * buf, size_t numbytes, unsigned int seq, unsigned int portid, mnl_cb_t cb_data, void * data, const mnl_cb_t * cb_ctl_array, unsigned int cb_ctl_array_len)"
+mnl_cb_run2 - callback runqueue for netlink messages 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbuf\fP buffer that contains the netlink messages 
+.br
+\fInumbytes\fP number of bytes stored in the buffer 
+.br
+\fIseq\fP sequence number that we expect to receive 
+.br
+\fIportid\fP Netlink PortID that we expect to receive 
+.br
+\fIcb_data\fP callback handler for data messages 
+.br
+\fIdata\fP pointer to data that will be passed to the data callback handler 
+.br
+\fIcb_ctl_array\fP array of custom callback handlers from control messages 
+.br
+\fIcb_ctl_array_len\fP array length of custom control callback handlers
+.RE
+.PP
+You can set the cb_ctl_array to NULL if you want to use the default control callback handlers, in that case, the parameter cb_ctl_array_len is not checked\&.
+
+.PP
+Your callback may return three possible values:
+.IP "\(bu" 2
+MNL_CB_ERROR (<=-1): an error has occurred\&. Stop callback runqueue\&.
+.IP "\(bu" 2
+MNL_CB_STOP (=0): stop callback runqueue\&.
+.IP "\(bu" 2
+MNL_CB_OK (>=1): no problem has occurred\&.
+.PP
+
+.PP
+This function propagates the callback return value\&. On error, it returns -1 and errno is explicitly set\&. If the portID is not the expected, errno is set to ESRCH\&. If the sequence number is not the expected, errno is set to EPROTO\&. If the dump was interrupted, errno is set to EINTR and you should request a new fresh dump again\&. 
+.PP
+Definition at line \fB130\fP of file \fBcallback\&.c\fP\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for libmnl from the source code\&.
