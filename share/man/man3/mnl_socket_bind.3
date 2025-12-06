@@ -1,0 +1,222 @@
+.TH "socket" 3 "Version 1.0.5" "libmnl" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+socket \- Netlink socket helpers
+.SH SYNOPSIS
+.br
+.PP
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBmnl_socket_get_fd\fP (const struct mnl_socket *nl)"
+.br
+.ti -1c
+.RI "unsigned int \fBmnl_socket_get_portid\fP (const struct mnl_socket *nl)"
+.br
+.ti -1c
+.RI "struct mnl_socket * \fBmnl_socket_open\fP (int bus)"
+.br
+.ti -1c
+.RI "struct mnl_socket * \fBmnl_socket_open2\fP (int bus, int flags)"
+.br
+.ti -1c
+.RI "struct mnl_socket * \fBmnl_socket_fdopen\fP (int fd)"
+.br
+.ti -1c
+.RI "int \fBmnl_socket_bind\fP (struct mnl_socket *nl, unsigned int groups, pid_t pid)"
+.br
+.ti -1c
+.RI "ssize_t \fBmnl_socket_sendto\fP (const struct mnl_socket *nl, const void *buf, size_t len)"
+.br
+.ti -1c
+.RI "ssize_t \fBmnl_socket_recvfrom\fP (const struct mnl_socket *nl, void *buf, size_t bufsiz)"
+.br
+.ti -1c
+.RI "int \fBmnl_socket_close\fP (struct mnl_socket *nl)"
+.br
+.ti -1c
+.RI "int \fBmnl_socket_setsockopt\fP (const struct mnl_socket *nl, int type, void *buf, socklen_t len)"
+.br
+.ti -1c
+.RI "int \fBmnl_socket_getsockopt\fP (const struct mnl_socket *nl, int type, void *buf, socklen_t *len)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SH "Function Documentation"
+.PP 
+.SS "int mnl_socket_bind (struct mnl_socket * nl, unsigned int groups, pid_t pid)"
+mnl_socket_bind - bind netlink socket 
+.PP
+\fBParameters\fP
+.RS 4
+\fInl\fP netlink socket obtained via \fBmnl_socket_open()\fP 
+.br
+\fIgroups\fP the group of message you're interested in 
+.br
+\fIpid\fP the port ID you want to use (use zero for automatic selection)
+.RE
+.PP
+On error, this function returns -1 and errno is appropriately set\&. On success, 0 is returned\&. You can use MNL_SOCKET_AUTOPID which is 0 for automatic port ID selection\&. 
+.PP
+Definition at line \fB193\fP of file \fBsocket\&.c\fP\&.
+.SS "int mnl_socket_close (struct mnl_socket * nl)"
+mnl_socket_close - close a given netlink socket 
+.PP
+\fBParameters\fP
+.RS 4
+\fInl\fP netlink socket obtained via \fBmnl_socket_open()\fP
+.RE
+.PP
+On error, this function returns -1 and errno is appropriately set\&. On success, it returns 0\&. 
+.PP
+Definition at line \fB296\fP of file \fBsocket\&.c\fP\&.
+.SS "struct mnl_socket * mnl_socket_fdopen (int fd)"
+mnl_socket_fdopen - associates a mnl_socket object with pre-existing socket\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIfd\fP pre-existing socket descriptor\&.
+.RE
+.PP
+On error, it returns NULL and errno is appropriately set\&. Otherwise, it returns a valid pointer to the mnl_socket structure\&. It also sets the portID if the socket fd is already bound and it is AF_NETLINK\&.
+
+.PP
+Note that \fBmnl_socket_get_portid()\fP returns 0 if this function is used with non-netlink socket\&. 
+.PP
+Definition at line \fB161\fP of file \fBsocket\&.c\fP\&.
+.SS "int mnl_socket_get_fd (const struct mnl_socket * nl)"
+mnl_socket_get_fd - obtain file descriptor from netlink socket 
+.PP
+\fBParameters\fP
+.RS 4
+\fInl\fP netlink socket obtained via \fBmnl_socket_open()\fP
+.RE
+.PP
+This function returns the file descriptor of a given netlink socket\&. 
+.PP
+Definition at line \fB85\fP of file \fBsocket\&.c\fP\&.
+.SS "unsigned int mnl_socket_get_portid (const struct mnl_socket * nl)"
+mnl_socket_get_portid - obtain Netlink PortID from netlink socket 
+.PP
+\fBParameters\fP
+.RS 4
+\fInl\fP netlink socket obtained via \fBmnl_socket_open()\fP
+.RE
+.PP
+This function returns the Netlink PortID of a given netlink socket\&. It's a common mistake to assume that this PortID equals the process ID which is not always true\&. This is the case if you open more than one socket that is binded to the same Netlink subsystem from the same process\&. 
+.PP
+Definition at line \fB99\fP of file \fBsocket\&.c\fP\&.
+.SS "int mnl_socket_getsockopt (const struct mnl_socket * nl, int type, void * buf, socklen_t * len)"
+mnl_socket_getsockopt - get a Netlink socket option 
+.PP
+\fBParameters\fP
+.RS 4
+\fInl\fP netlink socket obtained via \fBmnl_socket_open()\fP 
+.br
+\fItype\fP type of Netlink socket options 
+.br
+\fIbuf\fP pointer to the buffer to store the value of this option 
+.br
+\fIlen\fP size of the information written in the buffer
+.RE
+.PP
+On error, this function returns -1 and errno is appropriately set\&. 
+.PP
+Definition at line \fB343\fP of file \fBsocket\&.c\fP\&.
+.SS "struct mnl_socket * mnl_socket_open (int bus)"
+mnl_socket_open - open a netlink socket 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbus\fP the netlink socket bus ID (see NETLINK_* constants)
+.RE
+.PP
+On error, it returns NULL and errno is appropriately set\&. Otherwise, it returns a valid pointer to the mnl_socket structure\&. 
+.PP
+Definition at line \fB128\fP of file \fBsocket\&.c\fP\&.
+.SS "struct mnl_socket * mnl_socket_open2 (int bus, int flags)"
+mnl_socket_open2 - open a netlink socket with appropriate flags 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbus\fP the netlink socket bus ID (see NETLINK_* constants) 
+.br
+\fIflags\fP the netlink socket flags (see SOCK_* constants in socket(2))
+.RE
+.PP
+This is similar to \fBmnl_socket_open()\fP, but allows to set flags like SOCK_CLOEXEC at socket creation time (useful for multi-threaded programs performing exec calls)\&.
+
+.PP
+On error, it returns NULL and errno is appropriately set\&. Otherwise, it returns a valid pointer to the mnl_socket structure\&. 
+.PP
+Definition at line \fB145\fP of file \fBsocket\&.c\fP\&.
+.SS "ssize_t mnl_socket_recvfrom (const struct mnl_socket * nl, void * buf, size_t bufsiz)"
+mnl_socket_recvfrom - receive a netlink message 
+.PP
+\fBParameters\fP
+.RS 4
+\fInl\fP netlink socket obtained via \fBmnl_socket_open()\fP 
+.br
+\fIbuf\fP buffer that you want to use to store the netlink message 
+.br
+\fIbufsiz\fP size of the buffer passed to store the netlink message
+.RE
+.PP
+On error, it returns -1 and errno is appropriately set\&. If errno is set to ENOSPC, it means that the buffer that you have passed to store the netlink message is too small, so you have received a truncated message\&. To avoid this, you have to allocate a buffer of MNL_SOCKET_BUFFER_SIZE (which is 8KB, see linux/netlink\&.h for more information)\&. Using this buffer size ensures that your buffer is big enough to store the netlink message without truncating it\&. 
+.PP
+Definition at line \fB256\fP of file \fBsocket\&.c\fP\&.
+.SS "ssize_t mnl_socket_sendto (const struct mnl_socket * nl, const void * buf, size_t len)"
+mnl_socket_sendto - send a netlink message of a certain size 
+.PP
+\fBParameters\fP
+.RS 4
+\fInl\fP netlink socket obtained via \fBmnl_socket_open()\fP 
+.br
+\fIbuf\fP buffer containing the netlink message to be sent 
+.br
+\fIlen\fP number of bytes in the buffer that you want to send
+.RE
+.PP
+On error, it returns -1 and errno is appropriately set\&. Otherwise, it returns the number of bytes sent\&. 
+.PP
+Definition at line \fB232\fP of file \fBsocket\&.c\fP\&.
+.SS "int mnl_socket_setsockopt (const struct mnl_socket * nl, int type, void * buf, socklen_t len)"
+mnl_socket_setsockopt - set Netlink socket option 
+.PP
+\fBParameters\fP
+.RS 4
+\fInl\fP netlink socket obtained via \fBmnl_socket_open()\fP 
+.br
+\fItype\fP type of Netlink socket options 
+.br
+\fIbuf\fP the buffer that contains the data about this option 
+.br
+\fIlen\fP the size of the buffer passed
+.RE
+.PP
+This function allows you to set some Netlink socket option\&. As of writing this (see linux/netlink\&.h), the existing options are: 
+.PP
+.nf
+ - \\#define NETLINK_ADD_MEMBERSHIP  1
+ - \\#define NETLINK_DROP_MEMBERSHIP 2
+ - \\#define NETLINK_PKTINFO         3
+ - \\#define NETLINK_BROADCAST_ERROR 4
+ - \\#define NETLINK_NO_ENOBUFS      5
+
+.fi
+.PP
+
+.PP
+In the early days, Netlink only supported 32 groups expressed in a 32-bits mask\&. However, since 2\&.6\&.14, Netlink may have up to 2^32 multicast groups but you have to use setsockopt() with NETLINK_ADD_MEMBERSHIP to join a given multicast group\&. This function internally calls setsockopt() to join a given netlink multicast group\&. You can still use mnl_bind() and the 32-bit mask to join a set of Netlink multicast groups\&.
+
+.PP
+On error, this function returns -1 and errno is appropriately set\&. 
+.PP
+Definition at line \fB328\fP of file \fBsocket\&.c\fP\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for libmnl from the source code\&.
