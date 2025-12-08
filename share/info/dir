@@ -24,6 +24,9 @@ GNU Libraries
 * libgcrypt: (gcrypt).          Cryptographic function library.
 
 Libraries
+* History: (history).           The GNU history library API.
+* RLuserman: (rluserman).       The GNU readline library User's Manual.
+* Readline: (readline).         The GNU readline library API.
 * libgpg-error: (gpgrt).        Error codes and common code for GnuPG.
 
 Software development
