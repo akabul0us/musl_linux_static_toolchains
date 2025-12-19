@@ -32,6 +32,8 @@ Libraries
 Software development
 * GNU libtextstyle: (libtextstyle).
                                 Output of styled text.
+* GNU libunistring: (libunistring).
+                                Unicode string library.
 
 Software libraries
 * mpfr: (mpfr).                 Multiple Precision Floating-Point Reliable 
