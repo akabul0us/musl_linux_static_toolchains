@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+triple="arm-linux-musleabihf-cross"
+tcdir="/opt/toolchains"
+envvars="PKG_CONFIG_PATH PKG_CONFIG_LIBDIR PKG_CONFIG_SYSROOT_DIR PKG_CONFIG_TOP_BUILD_DIR PKG_CONFIG_SYSTEM_INCLUDE_PATH PKG_CONFIG_SYSTEM_LIBRARY_PATH"
+for e in $envvars; do
+	if [ ! -z "$e" ]; then
+		unset $e
+	fi
+done
+export PKG_CONFIG_PATH="$tcdir/$triple/lib/pkgconfig"
+export PKG_CONFIG_LIBDIR="$tcdir/$triple/lib"
+export PKG_CONFIG_SYSROOT_DIR="$tcdir/$triple"
+export PKG_CONFIG_SYSTEM_INCLUDE_PATH="$tcdir/$triple/include"
+export PKG_CONFIG_SYSTEM_LIBRARY_PATH="$tcdir/$triple/lib"
+exec /usr/bin/pkgconf --static $@
