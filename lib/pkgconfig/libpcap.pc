@@ -13,7 +13,7 @@ libdir="${exec_prefix}/lib"
 Name: libpcap
 Description: Platform-independent network traffic capture library
 Version: 1.10.5
-Requires.private: libnl-genl-3.0  openssl 
+Requires.private: libnl-genl-3.0 
 Libs: -L${libdir} -Wl,-rpath,${libdir} -lpcap
-Libs.private:  
+Libs.private: 
 Cflags: -I${includedir}
