@@ -1,0 +1,11 @@
+prefix=/opt/toolchains/aarch64-linux-musl-cross
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: libunwind
+Description: libunwind base library
+Version: 1.8.3
+Libs: -L${libdir} -lunwind
+Libs.private:  -lz
+Cflags: -I${includedir}

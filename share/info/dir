@@ -29,6 +29,10 @@ Libraries
 * Readline: (readline).         The GNU readline library API.
 * libgpg-error: (gpgrt).        Error codes and common code for GnuPG.
 
+Localization
+* idn2: (libidn2)Invoking idn2. Internationalized Domain Name (IDNA2008/TR46) 
+                                  conversion.
+
 Software development
 * GNU libtextstyle: (libtextstyle).
                                 Output of styled text.
@@ -36,5 +40,7 @@ Software development
                                 Unicode string library.
 
 Software libraries
+* libidn2: (libidn2).           Internationalized domain names (IDNA2008/TR46) 
+                                  processing.
 * mpfr: (mpfr).                 Multiple Precision Floating-Point Reliable 
                                   Library.
